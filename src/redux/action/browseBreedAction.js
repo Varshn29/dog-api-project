@@ -21,7 +21,7 @@ const browseBreedFailure = (error) => {
     }
 } 
 
-export const browseBreedFetched = (breedName) => {
+export const fetchBrowseBreed = (breedName) => {
     return (dispatch) => {
         dispatch(browseBreed())
 

@@ -21,7 +21,7 @@ const listOfBreedFailure = (error) => {
     }
 } 
 
-export const listOfBreedFetched = () => {
+export const fetchListOfBreed = () => {
     return (dispatch) => {
         dispatch(listOfBreed())
 

@@ -1,49 +1,67 @@
-import { Box, Card, CardMedia, CircularProgress, Container, Grid, Typography } from '@mui/material';
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { byBreedFetched } from '../../redux/action/byBreedAction';
+import { Box, Button, CardMedia, Container, Grid, Typography } from "@mui/material";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchByBreed } from '../../redux/action/byBreedAction'
+class ByBreed extends Component {
 
-const ByBreed = () => {
+  constructor() {
+    super()
+    this.state = {
+      value: 12
+    }
+  }
 
-  const dispatch = useDispatch();
-  const { isLoading, byBreedData, error } = useSelector(state => state.byBreedDetails);
-  const { message } = byBreedData;
 
-  useEffect(() => {
-    dispatch(byBreedFetched())
-  }, []);
+  componentDidMount() {
+    this.props.fetchByBreed()
+  }
 
-  // console.log(message);
 
-  function showByBreed(data) {
-    return data.filter((item, i) => i <= 11).map(
-      (item, i) =>
-        <Grid key={i} item xs={4}>
-          <CardMedia component="img"
-            sx={{ mb: '20px' }}
-            style={{ width: "260px", height: "400px" }}
-            image={item} alt='Dog-image'></CardMedia>
-        </Grid>
+  handleClick = () => {
+    this.setState({
+      value: this.state.value + 12
+    })
+  }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.value !== this.state.value) {
+      this.props.fetchByBreed()
+    }
+  }
+
+  showByBreed = (data) => {
+    return data?.slice(0, this.state.value).map((item, i) => {
+      return <Grid key={i} item xs={4}>
+        <img src={item}
+          style={{ width: "260px", height: "400px", marginBottom: '20px' }}
+          alt='Dog-image' />
+      </Grid>
+    }
     )
   }
 
-  function Spinner() {
+  render() {
     return (
-      <Box sx={{ display: 'flex' }}>
-        <CircularProgress />
-      </Box>
-    );
+      <Container>
+        <Typography variant='h5' sx={{ textAlign: 'center', mt: '30px', mb: '40px' }}>Displaying the 12 images from a breed, e.g. hound</Typography>
+        <Box style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+          {this.showByBreed(this.props.data.byBreedData.message)}
+        </Box>
+        <Button variant="contained" sx={{ ml: '400px', width: '300px', my: '20px', borderRadius: '20px' }} onClick={this.handleClick}>Load More</Button>
+      </Container>
+    )
   }
-
-  return (
-    <Container>
-      {isLoading && <Spinner />}
-      <Typography variant='h5' sx={{textAlign: 'center', mt: '30px', mb: '40px'}}>Displaying the 12 images from a breed, e.g. hound</Typography>
-      <Box style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-        {message?.length > 0 && showByBreed(message)}
-      </Box>
-    </Container>
-  )
 }
 
-export default ByBreed
+const mapStateToProps = (state) => {
+  return {
+    data: state.byBreedDetails
+  }
+}
+
+const mapDispatchToProps = {
+  fetchByBreed
+}
+
+export default connect(mapStateToProps, { fetchByBreed })(ByBreed)

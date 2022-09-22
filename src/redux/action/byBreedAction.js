@@ -21,7 +21,7 @@ const getByBreedFailure = (error) => {
     }
 } 
 
-export const byBreedFetched = () => {
+export const fetchByBreed = () => {
     return (dispatch) => {
         dispatch(getByBreed())
 

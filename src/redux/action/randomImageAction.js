@@ -21,7 +21,7 @@ const getRandomImageFailure = (error) => {
     }
 } 
 
-export const randomImageFetched = () => {
+export const fetchRandomImage = () => {
     return (dispatch) => {
         dispatch(getRandomImage())
 

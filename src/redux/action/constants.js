@@ -18,4 +18,10 @@ export const LIST_OF_BREED = 'LIST_OF_BREED';
 export const LIST_OF_BREED_SUCCESS = 'LIST_OF_BREED_SUCCESS';
 export const LIST_OF_BREED_FAILURE = 'LIST_OF_BREED_FAILURE';
 
+//user details for class did update
+export const GET_USER_DETAILS = 'GET_USER_DETAILS';
+export const GET_USER_DETAILS_SUCCESS = 'GET_USER_DETAILS_SUCCESS';
+export const GET_USER_DETAILS_FAILURE = 'GET_USER_DETAILS_FAILURE';
+
+
 

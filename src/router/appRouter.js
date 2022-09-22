@@ -7,6 +7,7 @@ import RandomImage from '../components/RandomImage/RandomImage';
 import ByBreed from '../components/ByBreed/ByBreed';
 import BrowseBreed from '../components/BrowseBreed/BrowseBreed'
 import NoMatch from "../components/NoMatch";
+import UserDetails from "../components/UserDetails/UserDetails";
 
 function Router() {
 
@@ -19,6 +20,7 @@ function Router() {
                 <Route path='/random-image' component={RandomImage} />
                 <Route path='/by-breed' component={ByBreed} />
                 <Route path='/browse-breed-list' component={BrowseBreed} />
+                <Route path='/user-details' component={UserDetails} />
                 <Route path='*' component={NoMatch} />
             </Switch>
         </BrowserRouter>
