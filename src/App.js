@@ -1,8 +1,12 @@
 import './App.css';
+import { Container, Typography } from '@mui/material';
 
 function App() {
   return (
-    <div> test </div>
+      <Container>
+        <Typography sx={{ textAlign: 'center', my: '50px' }} variant='h3'>Random Users</Typography>
+      </Container>
+      
   );
 }
 
